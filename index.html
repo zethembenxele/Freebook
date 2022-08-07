@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="mainlayout">
+        <div class="container">
+            <div class="sbform">
+                <div class="imgform">
+                    <img src="images/multiple.jpg">
+                </div>
+
+                <div class="contentform">
+                    <h2>Enter your email and Download Free PDF</h2>
+                    <p>In Multiple Streams of Income, bestselling author Robert Allen presents ten revolutionary new methods for generating over $100,000 a year—on a part-time basis, working from your home, using little or none of your own money. For this book, Allen researched hundreds of income-producing opportunities and narrowed them down to ten surefire moneymakers anyone can profit from.
+                        This revised edition includes a new chapter on a cutting-edge
+                         investing technique.</p>
+
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Enter Your Name" required>
+                        <input type="email" name="Email" placeholder="Enter Your Email" required>
+                        <button class="btn" type="submit">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                    <a href="images\multiple streams of income.pdf" download class="btn btn2" target="_blank">Download PDF</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <p>copyright @ZethembDev. Made With ProFoundness.</p>
+    </div>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxS1nzP5Mal8cMtWMTO7yvHKh87rPfCPH5GO7ZZPCvOsT4QHJiZrSV7yKR0ManHa1kT4A/exec'
+        const form = document.forms['submit-to-google-sheet']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = "Successful!"
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },5000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+</html>
